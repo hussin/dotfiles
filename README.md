@@ -10,3 +10,7 @@ source ~/dotfiles/bash/.bashrc
 [include]
     path = ~/dotfiles/git/.gitconfig
 ```
+~/.vimrc
+```
+source ~/dotfiles/vim/.vimrc
+```

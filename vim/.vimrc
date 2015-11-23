@@ -158,13 +158,6 @@ nmap <leader>s<down>   :rightbelow new<CR>
 
 nmap <silent> <C-l> :CtrlPBuffer<CR>
 
-function! Testpath()
-    return join(split(split(@%, '\.')[0], '\/'), '.')
-endfunction
-
-command! Testify execute "echo 'testify '.Testpath()"
-nmap <leader>tt :Testify<CR>
-
 map <silent> <C-b> :NERDTreeToggle<CR>
 nmap <silent> <A-left> :tabp<CR>
 nmap <silent> <A-right> :tabn<CR>

@@ -1,5 +1,9 @@
 
+" runtimepath for powerline
 set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim/
+
+" runtimepath to include dotfiles folder
+set rtp+=$home/dotfiles/vim/
 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 let mapleader=","
@@ -129,9 +133,9 @@ au FocusGained,BufEnter * :silent! !
 
 runtime autoload/pathogen.vim
 if exists('g:loaded_pathogen')
-    call pathogen#infect()    "load the bundles, if possible
-    Helptags                  "plus any bundled help
-    runtime bundle_config.vim "give me a chance to configure the plugins
+    call pathogen#infect('~/dotfiles/vim/.vim/bundle/{}')    " load the bundles, if possible
+    Helptags                  " plus any bundled help
+    runtime bundle_config.vim " give me a chance to configure the plugins
 endif
 
 " ctrlp {

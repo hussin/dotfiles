@@ -1,6 +1,5 @@
 
 set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim/
-set wildignore+=build/*,*htdocs/*
 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 let mapleader=","
@@ -28,7 +27,7 @@ au FocusGained * :set relativenumber
     set wildmode=longest:full
     set wildmenu            "a menu for resolving ambiguous tab-completion
                             "files we never want to edit
-    set wildignore=*.pyc,*.sw[pno],.*.bak,.*.tmp
+    set wildignore=*.pyc,*.sw[pno],.*.bak,.*.tmp,build/*,*htdocs/*
     set number
     set relativenumber
 

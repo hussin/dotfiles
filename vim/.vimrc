@@ -4,20 +4,18 @@ set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim/
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 let mapleader=","
 
+" undo is just 'r' now
+nnoremap r <c-r>
+
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 set t_ut=
 set autoread
 au FocusGained,BufEnter * :silent! !
 
-au InsertEnter * :set norelativenumber
-au InsertLeave * :set relativenumber
-au FocusLost * :set norelativenumber
-au FocusGained * :set relativenumber
-
 " display options {
     syntax on               "syntax coloring is a first-cut debugging tool
-    colorscheme railscasts "change to taste. try `desert' or `evening'
+    colorscheme railscasts  "change to taste. try `desert' or `evening'
 
     set wrap                "wrap long lines
     set scrolloff=3         "keep three lines visible above and below
@@ -33,22 +31,12 @@ au FocusGained * :set relativenumber
 
     set formatoptions+=r
     set cursorline
-" }
-
-" statusline {
-" compare the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-"    set statusline =                " clear!
-"    set statusline +=%<             " truncation point
-"    set statusline +=%2n:           " buffer number
-"    set statusline +=%f\            " relative path to file
-"    set statusline +=%#Error#%m     " modified flag [+], highlighted as error
-"    set statusline +=%r             " readonly flag [RO]
-"    set statusline +=%##%y          " filetype [ruby], reset color
-"    set statusline +=%=             " split point for left and right justification
-"    set statusline +=row:\ %3l      " current line number
-"    set statusline +=/%-3L\          " number of lines in buffer
-"    set statusline +=(%3P)\         " percentage through buffer
-"    set statusline +=col:\ %3v\     " current virtual column number (visual count)
+    
+    " relative numbering on normal, regular on insert mode
+    au InsertEnter * :set norelativenumber
+    au InsertLeave * :set relativenumber
+    au FocusLost * :set norelativenumber
+    au FocusGained * :set relativenumber
 " }
 
 " searching {
@@ -95,20 +83,48 @@ au FocusGained * :set relativenumber
     vnoremap p pgvy
 " }
 
-"indentation options {
+" indentation options {
     set expandtab                       "use spaces, not tabs
     set softtabstop=4 shiftwidth=4      "4-space indents
-
-
+    
     set shiftround                      "always use a multiple of 4 for indents
     set smarttab                        "backspace to remove space-indents
     set autoindent                      "auto-indent for code blocks
-    "DONT USE: smartindent              "it does stupid things with comments
 
     "smart indenting by filetype, better than smartindent
     filetype on
     filetype indent on
     filetype plugin on
+" }
+
+" tabs {
+    " previous/next tab
+    nmap <silent> <A-left> :tabp<CR>
+    nmap <silent> <A-right> :tabn<CR>
+   
+    " move tab left/right
+    nmap <silent> <A-down> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+    nmap <silent> <A-up> :execute 'silent! tabmove ' . tabpagenr()<CR>
+    
+    " if in insert mode, go to normal, do tab operation then back to insert
+    imap <silent> <A-left> <ESC>:tabp<CR>i<right>
+    imap <silent> <A-right> <ESC>:tabn<CR>i<right>
+    imap <silent> <A-down> <ESC>:execute 'silent! tabmove ' . (tabpagenr()-2)<CR>i
+    imap <silent> <A-up> <ESC>:execute 'silent! tabmove ' . tabpagenr()<CR>i
+" }
+
+" splits {
+    " window
+    nmap <leader>sw<left>  :topleft  vnew<CR>
+    nmap <leader>sw<right> :botright vnew<CR>
+    nmap <leader>sw<up>    :topleft  new<CR>
+    nmap <leader>sw<down>  :botright new<CR>
+    
+    " buffer
+    nmap <leader>s<left>   :leftabove  vnew<CR>
+    nmap <leader>s<right>  :rightbelow vnew<CR>
+    nmap <leader>s<up>     :leftabove  new<CR>
+    nmap <leader>s<down>   :rightbelow new<CR>
 " }
 
 runtime autoload/pathogen.vim
@@ -118,64 +134,58 @@ if exists('g:loaded_pathogen')
     runtime bundle_config.vim "give me a chance to configure the plugins
 endif
 
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 50
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
+" ctrlp {
+    let g:ctrlp_match_func = {'match' : 'matcher#cmatch' } " c-matcher instead of default
+    let g:ctrlp_clear_cache_on_exit = 0 " don't clear cache
+    let g:ctrlp_max_files = 0
+    let g:ctrlp_max_depth = 50
+    let g:ctrlp_cmd = 'CtrlPMixed' " MRU, buffer and normal
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
 
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+    " enter opens file in new tab, <c-t> in the same tab (inverting default
+    " behavior)
+    let g:ctrlp_prompt_mappings = {
+        \ 'AcceptSelection("e")': ['<c-t>'],
+        \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+        \ }
 
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-    \ --ignore .git
-    \ --ignore .svn
-    \ --ignore .hg
-    \ --ignore .DS_Store
-    \ --ignore "**/build*"
-    \ --ignore "**/*htdocs*"
-    \ --ignore "**/*.pyc"
-    \ -g ""'
+    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+        \ --ignore .git
+        \ --ignore .svn
+        \ --ignore .hg
+        \ --ignore .DS_Store
+        \ --ignore "**/build*"
+        \ --ignore "**/*htdocs*"
+        \ --ignore "**/*.pyc"
+        \ -g ""'
+
+    " find only on already open files
+    nmap <silent> <C-l> :CtrlPBuffer<CR>
+" }
 
 let g:syntastic_python_checkers = ['python']
 let g:pymode_folding = 0
 
-" window
-nmap <leader>sw<left>  :topleft  vnew<CR>
-nmap <leader>sw<right> :botright vnew<CR>
-nmap <leader>sw<up>    :topleft  new<CR>
-nmap <leader>sw<down>  :botright new<CR>
-" buffer
-nmap <leader>s<left>   :leftabove  vnew<CR>
-nmap <leader>s<right>  :rightbelow vnew<CR>
-nmap <leader>s<up>     :leftabove  new<CR>
-nmap <leader>s<down>   :rightbelow new<CR>
-
-nmap <silent> <C-l> :CtrlPBuffer<CR>
-
 map <silent> <C-b> :NERDTreeToggle<CR>
-nmap <silent> <A-left> :tabp<CR>
-nmap <silent> <A-right> :tabn<CR>
-nmap <silent> <A-down> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nmap <silent> <A-up> :execute 'silent! tabmove ' . tabpagenr()<CR>
-imap <silent> <A-left> <ESC>:tabp<CR>i<right>
-imap <silent> <A-right> <ESC>:tabn<CR>i<right>
-imap <silent> <A-down> <ESC>:execute 'silent! tabmove ' . (tabpagenr()-2)<CR>i
-imap <silent> <A-up> <ESC>:execute 'silent! tabmove ' . tabpagenr()<CR>i
+
 map <silent> <C-d> :BufExplorerVerticalSplit<CR>
 
-nnoremap r <c-r>
+" debuggers!
 noremap <Leader>i Oimport ipdb; ipdb.set_trace()<ESC>
 noremap <Leader>p Oimport pdb; pdb.set_trace()<ESC>
+
+" edit/source .vimrc
 noremap <silent> <Leader>ve :tabe $MYVIMRC<CR>
 noremap <silent> <Leader>vs :so $MYVIMRC<CR>
+
+" clear search highlights
 noremap <silent> <Leader>nh :nohl<CR>
+
+" use this before pasting with cmd+v so that indentation doesn't get messed up
 noremap <silent> <Leader>sp :set paste<CR>
+" revert after pasting with cmd+v
 noremap <silent> <Leader>np :set nopaste<CR>
 
-
+" toggle relative numbering
 nnoremap <silent><Leader>n :set relativenumber!<cr>

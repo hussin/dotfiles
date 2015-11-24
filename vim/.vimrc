@@ -1,6 +1,6 @@
 
 " runtimepath for powerline
-" set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim/
+set rtp+=$HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/
 
 " runtimepath to include dotfiles folder
 set rtp+=$HOME/dotfiles/vim/.vim/

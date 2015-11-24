@@ -1,6 +1,12 @@
 #!/bin/bash
 source ~/dotfiles/git/git-completion.bash
 
+if [ -d "$HOME/Library/Python/2.7/bin/" ]; then
+    PATH="$HOME/Library/Python/2.7/bin/:$PATH"
+    export POWERLINE_COMMAND=powerline
+    export POWERLINE_CONFIG_COMMAND=powerline-config
+fi
+
 export TERM=xterm-256color
 
 if hash gls 2>/dev/null; then

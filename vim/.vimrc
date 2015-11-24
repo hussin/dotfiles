@@ -1,9 +1,9 @@
 
 " runtimepath for powerline
-set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim/
+" set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim/
 
 " runtimepath to include dotfiles folder
-set rtp+=$home/dotfiles/vim/
+set rtp+=$HOME/dotfiles/vim/.vim/
 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 let mapleader=","

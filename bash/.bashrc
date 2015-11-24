@@ -3,6 +3,16 @@ source ~/dotfiles/git/git-completion.bash
 
 export TERM=xterm-256color
 
+if hash gls 2>/dev/null; then
+	alias ls='gls --color'
+fi
+
+LSCOLORS='cxgxfxdxbxeggcabagacad'
+export LSCOLORS
+
+LS_COLORS='di=32;40:ln=36;40:so=35;40:pi=33;40:ex=31;40:bd=34;46:cd=36;42:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
+export LS_COLORS
+
 # get current branch in git repo
 function parse_git_branch() {
     BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`

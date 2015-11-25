@@ -5,7 +5,7 @@
 source ~/dotfiles/bash/.bashrc
 ```
 
-~/.bash_profile
+~/.bash_profile:
 ```
 source ~/.bashrc
 ```

@@ -1,6 +1,8 @@
 [user]
     name = Luis Felipe Hussin Bento
     email = hussin@gmail.com
+[core]
+    editor = vim
 [color]
     ui = true
 [alias]

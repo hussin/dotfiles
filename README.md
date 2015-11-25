@@ -5,6 +5,11 @@
 source ~/dotfiles/bash/.bashrc
 ```
 
+~/.bash_profile
+```
+source ~/.bashrc
+```
+
 ~/.gitconfig:
 ```
 [include]

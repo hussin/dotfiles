@@ -17,6 +17,9 @@ set t_ut=
 set autoread
 au FocusGained,BufEnter * :silent! !
 
+" close doc tab when finishing autocomplete
+autocmd CompleteDone * silent! pclose
+
 " display options {
     syntax on               "syntax coloring is a first-cut debugging tool
     colorscheme railscasts  "change to taste. try `desert' or `evening'

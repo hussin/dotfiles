@@ -174,6 +174,8 @@ endif
 let g:syntastic_python_checkers = ['python']
 let g:pymode_folding = 0
 
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+
 map <silent> <C-b> :NERDTreeToggle<CR>
 
 map <silent> <C-d> :BufExplorerVerticalSplit<CR>

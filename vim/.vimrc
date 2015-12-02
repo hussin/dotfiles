@@ -17,9 +17,6 @@ set t_ut=
 set autoread
 au FocusGained,BufEnter * :silent! !
 
-" close doc tab when finishing autocomplete
-autocmd CompleteDone * silent! pclose
-
 " display options {
     syntax on               "syntax coloring is a first-cut debugging tool
     colorscheme railscasts  "change to taste. try `desert' or `evening'
@@ -174,7 +171,8 @@ endif
 let g:syntastic_python_checkers = ['python']
 let g:pymode_folding = 0
 
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+" close doc tab when finishing autocomplete
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 map <silent> <C-b> :NERDTreeToggle<CR>
 

@@ -31,16 +31,10 @@ au FocusGained,BufEnter * :silent! !
                             "files we never want to edit
     set wildignore=*.pyc,*.sw[pno],.*.bak,.*.tmp,build/*,*htdocs/*
     set number
-    set relativenumber
 
     set formatoptions+=r
     set cursorline
     
-    " relative numbering on normal, regular on insert mode
-    au InsertEnter * :set norelativenumber
-    au InsertLeave * :set relativenumber
-    au FocusLost * :set norelativenumber
-    au FocusGained * :set relativenumber
 " }
 
 " searching {
@@ -194,5 +188,5 @@ noremap <silent> <Leader>sp :set paste<CR>
 " revert after pasting with cmd+v
 noremap <silent> <Leader>np :set nopaste<CR>
 
-" toggle relative numbering
-nnoremap <silent><Leader>n :set relativenumber!<cr>
+" toggle numbering
+nnoremap <silent><Leader>n :set number!<cr>

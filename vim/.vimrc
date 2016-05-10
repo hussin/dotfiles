@@ -1,6 +1,6 @@
 
 " runtimepath for powerline
-set rtp+=$HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/
 
 " runtimepath to include dotfiles folder
 set rtp+=$HOME/dotfiles/vim/.vim/
@@ -167,6 +167,7 @@ endif
 " }
 
 let g:syntastic_python_checkers = ['python']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:pymode_folding = 0
 
 " close doc tab when finishing autocomplete

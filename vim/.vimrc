@@ -58,6 +58,9 @@ au FocusGained,BufEnter * :silent! !
     " This makes files with very long lines much more manageable.
     nnoremap j gj
     nnoremap k gk
+    noremap <down> gj
+    noremap <up> gk
+    
     " Moving left/right will wrap around to the previous/next line.
     set whichwrap=b,s,h,l,<,>,~,[,]
     " Backspace will delete whatever is behind your cursor.
@@ -66,6 +69,7 @@ au FocusGained,BufEnter * :silent! !
     "Bind the 'old' up and down. Use these to skip past a very long line.
     noremap gj j
     noremap gk k
+
 " }
 
 " general usability {
@@ -102,13 +106,13 @@ au FocusGained,BufEnter * :silent! !
    
     " move tab left/right
     nmap <silent> <A-down> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-    nmap <silent> <A-up> :execute 'silent! tabmove ' . tabpagenr()<CR>
+    nmap <silent> <A-up> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
     
     " if in insert mode, go to normal, do tab operation then back to insert
     imap <silent> <A-left> <ESC>:tabp<CR>i<right>
     imap <silent> <A-right> <ESC>:tabn<CR>i<right>
     imap <silent> <A-down> <ESC>:execute 'silent! tabmove ' . (tabpagenr()-2)<CR>i
-    imap <silent> <A-up> <ESC>:execute 'silent! tabmove ' . tabpagenr()<CR>i
+    imap <silent> <A-up> <ESC>:execute 'silent! tabmove ' . (tabpagenr()+1)<CR>i
 " }
 
 " splits {

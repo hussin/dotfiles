@@ -30,4 +30,10 @@ function parse_git_branch() {
     fi
 }
 
+function grepthis() {
+    grep -rnIG --color  $1 ./
+}
+
+alias gr=grepthis
+
 export PS1="\[\033[38;5;45m\]\u\[\033[0m\]@\[\033[38;5;228m\]\h\[\033[0m\]:\[\033[38;5;182m\]\w\[\033[38;5;85m\]\`parse_git_branch\`\[\033[0m\] $ "

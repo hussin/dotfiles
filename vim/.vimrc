@@ -166,9 +166,17 @@ endif
     nmap <silent> <C-l> :CtrlPBuffer<CR>
 " }
 
-let g:syntastic_python_checkers = ['python']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:pymode_folding = 0
+" syntastic {
+    let g:syntastic_python_checkers = ['python']
+    let g:syntastic_javascript_checkers = ['eslint']
+    let g:pymode_folding = 0
+"}
+
+" ultisnips {
+    let g:UltiSnipsExpandTrigger="<c-space>"
+    let g:UltiSnipsJumpForwardTrigger="<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" }
 
 " close doc tab when finishing autocomplete
 let g:ycm_autoclose_preview_window_after_completion = 1

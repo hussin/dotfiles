@@ -10,9 +10,6 @@
 [submodule "vim/.vim/bundle/nerdtree"]
 	path = vim/.vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vim/.vim/bundle/snipmate.vim"]
-	path = vim/.vim/bundle/snipmate.vim
-	url = https://github.com/msanders/snipmate.vim.git
 [submodule "vim/.vim/bundle/syntastic"]
 	path = vim/.vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
@@ -31,15 +28,12 @@
 [submodule "vim/.vim/bundle/emmet-vim"]
 	path = vim/.vim/bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
-[submodule "vim/.vim/bundle/tlib_vim"]
-	path = vim/.vim/bundle/tlib_vim
-	url = https://github.com/tomtom/tlib_vim.git
-[submodule "vim/.vim/bundle/vim-addon-mw-utils"]
-	path = vim/.vim/bundle/vim-addon-mw-utils
-	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "vim/.vim/bundle/vim-react-snippets"]
-	path = vim/.vim/bundle/vim-react-snippets
-	url = https://github.com/justinj/vim-react-snippets.git
 [submodule "vim/.vim/bundle/vim-json"]
 	path = vim/.vim/bundle/vim-json
 	url = https://github.com/elzr/vim-json.git
+[submodule "vim/.vim/bundle/ultisnips"]
+	path = vim/.vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "vim/.vim/bundle/vim-react-es6-snippets"]
+	path = vim/.vim/bundle/vim-react-es6-snippets
+	url = git@github.com:hussin/vim-react-es6-snippets.git
